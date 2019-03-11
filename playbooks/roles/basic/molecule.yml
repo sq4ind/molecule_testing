@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+docker:
+  containers:
+    - name: centos7
+      image: centos/systemd
+      privileged: true
+      command: /sbin/init
+      security_opts:
+        - seccomp=unconfigured
+      capabilities:
+        - SYS_ADMIN
+      volume_mounts:
+        - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+verifier:
+  name: testinfra

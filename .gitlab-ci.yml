@@ -1,0 +1,19 @@
+---
+variables:
+  GIT_DEPTH: "1"
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/pip-cache"
+
+cache:
+  paths:
+    - "$CI_PROJECT_DIR/pip-cache"
+  key: "$CI_PROJECT_ID"
+
+stages:
+  - molecule
+
+molecule:
+  stage: molecule
+  tags:
+    - shell
+  script:
+    - cd playbooks/roles/basic/ && molecule test
