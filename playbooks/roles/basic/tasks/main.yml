@@ -1,15 +1,20 @@
 ---
 # tasks file for basic
 
+- name: install epel-repo
+  yum:
+    name:
+      - epel-release
+    state: present
+
 - name: install required packages
   yum:
-    name: "{{ item }}"
+    name:
+      - haveged
+      - chrony
+      - vim
     state: present
-  with_items:
-    - haveged
-    - chrony
-    - vim
- 
+
 - name: start and enable required services
   service:
     name: "{{ item }}"
@@ -17,4 +22,4 @@
     enabled: true
   with_items:
     - haveged
-    - chrony
+    - chronyd
