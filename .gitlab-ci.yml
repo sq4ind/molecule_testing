@@ -16,4 +16,4 @@ molecule:
   tags:
     - shell
   script:
-    - cd playbooks/roles/basic/ && molecule test
+    - cd playbooks/roles/ && molecule test
