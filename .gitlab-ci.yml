@@ -13,7 +13,5 @@ stages:
 
 molecule:
   stage: molecule
-  tags:
-    - shell
   script:
     - cd playbooks/roles/basic/ && molecule test
