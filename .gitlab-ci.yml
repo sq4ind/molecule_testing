@@ -14,7 +14,7 @@ stages:
 molecule:
   stage: molecule
   tags:
-    - shell
+    - shel
   script:
     - |
       cd playbooks/roles/
