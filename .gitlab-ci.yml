@@ -16,4 +16,13 @@ molecule:
   tags:
     - shell
   script:
-    - cd playbooks/roles/$CI_COMMIT_DESCRIPTION/ && molecule test
+    - |
+      cd playbooks/roles/
+      if [[ ! -z "$CI_COMMIT_DESCRIPTION" ]]; then
+        cd $CI_COMMIT_DESCRIPTION/ && molecule test
+      else
+        for role in `find . -type d -name "molecule" | cut -d'/' -f 2`; do
+          cd $role && molecule test
+          cd ..
+        done
+      fi
